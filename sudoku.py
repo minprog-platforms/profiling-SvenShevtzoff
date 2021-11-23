@@ -1,5 +1,5 @@
 from __future__ import annotations
-from typing import Iterable, Sequence
+from typing import Iterable
 
 
 class Sudoku:
@@ -18,7 +18,6 @@ class Sudoku:
 
     def place(self, value: int, x: int, y: int) -> None:
         """Place value at x,y."""
-        row = self._grid[y]
         new_row = []
 
         for i in range(9):
