@@ -18,13 +18,14 @@ class Sudoku:
 
     def place(self, value: int, x: int, y: int) -> None:
         """Place value at x,y."""
+        row = self._grid[y]
         new_row = []
 
         for i in range(9):
             if i == x:
                 new_row.append(value)
             else:
-                new_row.append(i)
+                new_row.append(row[i])
 
         self._grid[y] = new_row
 
@@ -76,11 +77,11 @@ class Sudoku:
 
     def row_values(self, i: int) -> Iterable[int]:
         """Returns all values at i-th row."""
-        return self._grid[i]
+        return list(self._grid[i])
 
     def column_values(self, i: int) -> Iterable[int]:
         """Returns all values at i-th column."""
-        return list(zip(*self._grid))[i]
+        return list(list(zip(*self._grid))[i])
 
     def block_values(self, i: int) -> Iterable[int]:
         """
@@ -118,7 +119,8 @@ class Sudoku:
 
                 if value not in self.block_values(i):
                     return False
-
+            
+        
         return True
 
     def __str__(self) -> str:
